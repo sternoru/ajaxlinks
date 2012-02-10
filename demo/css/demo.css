@@ -1,0 +1,26 @@
+h1 {
+	color: #2CADFF;
+}
+
+	h1 span {
+		font-size: 50%;
+		color: #333333;
+		margin-left: 10px;
+	}
+
+h2, h3, h4, h5, h6 {
+	color: #333333;
+}
+
+a:link,
+a:active,
+a:visited {
+	color: #2CADFF;
+}
+
+.content {
+	width: 800px;
+	padding: 20px;
+	margin: 20px 0 50px 0;
+	border: 2px dashed #CCC;
+}

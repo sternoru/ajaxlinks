@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>AjaxLinks.js</title>
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="js/highlight/styles/arta.css" />
+        <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="js/sammy-latest.min.js"></script>
+        <script type="text/javascript" src="js/highlight/highlight.pack.js"></script>
+        <script type="text/javascript" src="../jquery.ajaxlinks.js"></script>
+        <script type="text/javascript">
+        	$(document).ready(function() {
+        		hljs.tabReplace = '    '; // 4 spaces
+        		hljs.initHighlightingOnLoad();
+        		$('#nav a').ajaxlinks({
+        			load_from: '#content',
+        			load_to: '#content'
+        		});
+        		$('#nav1 a').ajaxlinks({
+					load_to: '#content1',
+					load_from: '#content',
+					loader: '<div>Custom loading...</div>',	
+					use_sammy: true,				
+					callback: function(params) {
+						$('#content1').css('opacity', '0').animate({'opacity': '1'}, 'slow');
+					}
+        		});
+        	});        	
+        </script>
+    </head>
+    <body>
+    	<div id="wrapper">
+    		<div id="header">
+		        <h1>AjaxLinks.js<span> | jQuery plugin</span></h1>
+		        <p>This plugin allows you to ajaxify your website.<br/>
+		        By applying this plugin to your navigation links you can load content prom other pages into the current page with one line of code!</p>
+		        <h2>Examples</h2>
+		        <h3>1. Simple example</h3>
+		        <pre><code class="javascript">
+$('#nav a').ajaxlinks({
+	load_to: '#content',
+	load_from: '#content'
+});
+		        </code></pre>
+		        <div>			        		        
+			        <span id="nav">		        	
+			        	<a href="content/content1.html">Page 1</a>
+			        	|
+			        	<a href="content/content2.html">Page 2</a>
+			        	|
+			        	<a href="content/content3.html">Page 3</a>
+			        </span>
+			        (AjaxLinks.js applied)
+		        </div>
+		        <div>			        		        
+			        <span id="nav-noajax">		        	
+			        	<a href="content/content1.html">Page 1</a>
+			        	|
+			        	<a href="content/content2.html">Page 2</a>
+			        	|
+			        	<a href="content/content3.html">Page 3</a>
+			        </span>
+			        (Same HTML, AjaxLinks.js <u>NOT</u> applied)
+		        </div>
+		        <div id="content" class="content">
+		        	Content will be loaded here...
+		        </div>
+		        <h3>2. Advanced example (with Sammy.js and a callback)</h3>
+		        <pre><code class="javascript">
+$('#nav1 a').ajaxlinks({
+	load_to: '#content1',
+	load_from: '#content',
+	loader: 'Custom loading...',
+	use_sammy: true,					
+	callback: function(params) {
+		$('#content1').css('opacity', '0').animate({'opacity': '1'}, 'slow');
+	}
+});
+		        </code></pre>
+		        <div>			        		        
+			        <span id="nav1">		        	
+			        	<a href="content/content1.html">Page 1</a>
+			        	|
+			        	<a href="content/content2.html">Page 2</a>
+			        	|
+			        	<a href="content/content3.html">Page 3</a>
+			        </span>
+			        (AjaxLinks.js applied)
+		        </div>		        
+		        <div id="content1" class="content">
+		        	Content will be loaded here...
+		        </div>
+	        </div>	        
+        </div>
+    </body>
+</html>
