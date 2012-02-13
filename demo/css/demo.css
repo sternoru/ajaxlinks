@@ -1,5 +1,7 @@
 body {
-	margin: 20px 40px;
+    background: #333333;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
@@ -36,10 +38,20 @@ a[name] {
 	border-bottom: 1px dashed #333333;
 }
 
+#wrapper {
+	padding: 20px 40px;
+    width: 880px;
+    position: absolute;
+    left: 50%;
+    margin-left: -480px;
+    background: #fff;
+    box-shadow:-3px -3px 10px #CCCCCC, 3px -3px 10px #CCCCCC;
+}
+
 #main-nav {
 	position: fixed;
 	top: 0;
-	right: 20px;
+	margin-left: 440px;
 	width: 400px;
 	height: 20px;
 	border-radius: 0  0 10px 10px;
