@@ -1,4 +1,5 @@
-/* Ajaxlinks jQuery plugin*/
+/* Ajaxlinks jQuery plugin */
+/* Home page and demo: http://sternoru.github.com/ajaxlinks/ */
 (function($) {
     $.fn.ajaxlinks = function(newConfig) {
     	var defaultConfig = {
@@ -8,8 +9,9 @@
 			callback: null,
 			use_sammy: false,
 			prefix: ''
-    	};
-    	var config = $.extend(defaultConfig, newConfig);    	
+    	};    	
+    	var config = $.extend(defaultConfig, newConfig);
+    	config.links = this;    	
 		var prevURL = '';
 		var loadCall = function(href) {
 		    var params = {};
@@ -27,12 +29,13 @@
 				if(!config.callback) {
 					return;
 				}
-	            config.callback(params);
+				var content = $(this).html();
+				var link = config.links.filter('[href*="'+href+'"]');
+	            config.callback(content, link, params);
 	        };			            
 			if(prevURL != params.path) {
 				prevURL = params.path;
-				var path = config.load_from ? [params.path, config.load_from, ' *'].join(' ') : params.path;
-				console.log(path);		
+				var path = config.load_from ? [params.path, config.load_from, ' *'].join(' ') : params.path;					
 				$(config.load_to).html($(config.loader)).load(path, ajaxCallback);
 			}
 			else {

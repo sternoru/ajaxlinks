@@ -23,8 +23,9 @@
 					load_from: '#content',
 					loader: '<div>Custom loading...</div>',	
 					use_sammy: true,				
-					callback: function(params) {
-						$('#content1').css('opacity', '0').animate({'opacity': '1'}, 'slow');
+					callback: function(content, link, params) {
+						$('#content1').css('opacity', '0').animate({'opacity': '1'}, 'slow');	
+						$(link).addClass('active').siblings().removeClass('active');					
 					}
         		});
         	});        	
@@ -33,10 +34,28 @@
     <body>
     	<div id="wrapper">
     		<div id="header">
+    			<div id="main-nav">
+    				<a href="#">Top</a>
+			        |
+    				<a href="#download">Download</a>
+			        |
+			        <a href="#examples">Examples</a>
+			        |
+			        <a href="#configuration">Configuration</a>
+    			</div>
 		        <h1>AjaxLinks.js<span> | jQuery plugin</span></h1>
 		        <p>This plugin allows you to ajaxify your website.<br/>
 		        By applying this plugin to your navigation links you can load content prom other pages into the current page with one line of code!</p>
-		        <h2>Examples</h2>
+		        <p>AjaxLinks.js plays very nice with <a href="http://sammyjs.org/" target="_blank">Sammy.js</a></p>
+		    </div> <!-- /header -->
+		    <div id="content-wrapper">
+		    	<h2><a name="download" href="#download">Download</a></h2>
+		    	<ul>
+		    		<li><a href="https://github.com/sternoru/ajaxlinks/raw/master/jquery.ajaxlinks.js">Source</a></li>
+		    		<li><a href="https://github.com/sternoru/ajaxlinks/raw/master/jquery.ajaxlinks.min.js">Source (minified)</a></li>		    		
+		    		<li><a href="https://github.com/sternoru/ajaxlinks/zipball/master">Source (ZIP, with demo files)</a></li>
+		    	</ul>
+		        <h2><a name="examples" href="#examples">Examples</a></h2>
 		        <h3>1. Simple example</h3>
 		        <pre><code class="javascript">
 $('#nav a').ajaxlinks({
@@ -67,15 +86,16 @@ $('#nav a').ajaxlinks({
 		        <div id="content" class="content">
 		        	Content will be loaded here...
 		        </div>
-		        <h3>2. Advanced example (with Sammy.js and a callback)</h3>
+		        <h3>2. Advanced example (with <a href="http://sammyjs.org/" target="_blank">Sammy.js</a> and a callback)</h3>
 		        <pre><code class="javascript">
 $('#nav1 a').ajaxlinks({
 	load_to: '#content1',
 	load_from: '#content',
 	loader: 'Custom loading...',
 	use_sammy: true,					
-	callback: function(params) {
+	callback: function(content, link, params) {
 		$('#content1').css('opacity', '0').animate({'opacity': '1'}, 'slow');
+		$(link).addClass('active').siblings().removeClass('active');
 	}
 });
 		        </code></pre>
@@ -92,7 +112,39 @@ $('#nav1 a').ajaxlinks({
 		        <div id="content1" class="content">
 		        	Content will be loaded here...
 		        </div>
-	        </div>	        
-        </div>
+		        <h2><a name="configuration" href="#configuration">Configuration</a></h2>
+		        <p>All the parameters are optional.</p>
+		        <h3>1. load_to</h3>
+		        <p>Selector of an element where AJAX content should be loaded into.</p>
+		        <p><u>Default:</u> '#content'</p>		        
+		        <h3>2. load_from</h3>		        
+		        <p>
+		        	Selector of an element in a targer page where AJAX content should be taken from.<br/>
+		        	If not provided will load the whole page.
+		        </p>
+		        <p><u>Default:</u> null</p>
+		        <h3>3. loader</h3>
+		        <p>HTML or text of the loader to show while content is loading.</p>
+		        <p><u>Default:</u> '<span class="ajax-loader">Loading...</span>'</p>
+		        <h3>4. callback</h3>
+		        <p>Callback function to call after content is loaded.</p>
+		        <p><u>Default:</u> null</p>
+		        <u>Function agruments:</u> 
+		        <ul>
+		        	<li><b>content</b> - Content loaded from a target page</li>
+		        	<li><b>link</b> - Original link element clicked (after ajaxlinks were applied)</li>
+		        	<li><b>params</b> - Hash parameters after #! root separated by | if <a href="http://sammyjs.org/" target="_blank">Sammy.js</a> is used.</li>
+		        </ul>
+		        <h3>5. use_sammy</h3>
+		        <p>
+		        	Indicates if <a href="http://sammyjs.org/" target="_blank">Sammy.js</a> should be used to handle hash part of the URL.<br/>
+		        	Sammy.js javascript library has to be included in the page then.
+		       	</p>
+		        <p><u>Default:</u> false</p>
+		        <h3>6. prefix</h3>
+		        <p>Prefix for all the links before the hash root if <a href="http://sammyjs.org/" target="_blank">Sammy.js</a> is used.</p>
+		        <p><u>Default:</u> ''</p>	
+	        </div> <!-- /content-wrapper -->       
+      	</div> <!-- /wrapper --> 
     </body>
 </html>
