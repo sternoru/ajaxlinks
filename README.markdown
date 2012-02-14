@@ -2,7 +2,7 @@
 =========================================
 
 This plugin allows you to ajaxify your website.
-By applying this plugin to your navigation links you can load content prom other pages into the current page with one line of code!
+By applying this plugin to your navigation links you can load content from other pages into the current page with one line of code!
 
 [AjaxLinks.js](http://sternoru.github.com/ajaxlinks/) plays very nice with [Sammy.js](http://sammyjs.org/)
 
