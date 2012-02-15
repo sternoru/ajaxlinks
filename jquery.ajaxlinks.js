@@ -26,7 +26,7 @@
 		    else {
 		    	params.path = href;
 		    }
-			var ajaxCallback = function() {
+			var ajaxCallback = function(response, status, xhr) {
 				// unfix container's height to adjust it to newly loaded content.
 				// I placed it before the callback in case user is overriding the height.
 				if (config.smooth_height)
@@ -35,21 +35,31 @@
 				}
 				if(!config.callback) {
 					return;
-				}
+				}				
 				var content = $(this).html();
+				if(config.load_from && response) {
+					if($(this).find(config.load_from).length > 0) { // load inner html instead of container
+						content = $(this).find(config.load_from).html();
+						$load_to.html(content);				
+					}
+					else { // load the whole response if load_from selector not found
+						content = response;
+						$load_to.html(content);
+					}
+				}
 				var link = config.links.filter('[href*="'+href+'"]');
 	            config.callback(content, link, params);
 	        };			            
 			if(prevURL != params.path) {
 				prevURL = params.path;
-				var path = config.load_from ? [params.path, config.load_from, ' *'].join(' ') : params.path,
+				var path = config.load_from ? [params.path, config.load_from].join(' ') : params.path,
 					$load_to = $(config.load_to);
 				// fix container's height to avoid the glitch
 				if (config.smooth_height)
 				{
 					$load_to.height($load_to.height());
 				}
-				$load_to.html($(config.loader)).load(path, ajaxCallback);
+				$load_to.html($(config.loader)).load(path, ajaxCallback);				
 			}
 			else {
 				ajaxCallback();
