@@ -8,7 +8,8 @@
 			loader: '<span>Loading...</span>',
 			callback: null,
 			use_sammy: false,
-			prefix: ''
+			prefix: '',
+			smooth_height: true
     	};    	
     	var config = $.extend(defaultConfig, newConfig);
     	config.links = this;    	
@@ -26,6 +27,12 @@
 		    	params.path = href;
 		    }
 			var ajaxCallback = function() {
+				// unfix container's height to adjust it to newly loaded content.
+				// I placed it before the callback in case user is overriding the height.
+				if (config.smooth_height)
+				{
+					$load_to.height('auto');
+				}
 				if(!config.callback) {
 					return;
 				}
@@ -35,8 +42,14 @@
 	        };			            
 			if(prevURL != params.path) {
 				prevURL = params.path;
-				var path = config.load_from ? [params.path, config.load_from, ' *'].join(' ') : params.path;					
-				$(config.load_to).html($(config.loader)).load(path, ajaxCallback);
+				var path = config.load_from ? [params.path, config.load_from, ' *'].join(' ') : params.path,
+					$load_to = $(config.load_to);
+				// fix container's height to avoid the glitch
+				if (config.smooth_height)
+				{
+					$load_to.height($load_to.height());
+				}
+				$load_to.html($(config.loader)).load(path, ajaxCallback);
 			}
 			else {
 				ajaxCallback();
