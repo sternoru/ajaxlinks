@@ -22,7 +22,7 @@
 					load_to: '#content1',
 					load_from: '#content',
 					loader: '<div>Custom loading...</div>',	
-					use_sammy: true,				
+					use_sammy: true,			
 					callback: function(content, link, params) {
 						$('#content1').css('opacity', '0').animate({'opacity': '1'}, 'slow');	
 						$(link).addClass('active').siblings().removeClass('active');					
@@ -149,7 +149,10 @@ $('#nav1 a').ajaxlinks({
 		        <p><u>Default:</u> false</p>
 		        <h3>6. prefix</h3>
 		        <p>Prefix for all the links before the hash root if <a href="http://sammyjs.org/" target="_blank">Sammy.js</a> is used.</p>
-		        <p><u>Default:</u> ''</p>	
+		        <p><u>Default:</u> ''</p>
+		        <h3>7. smooth_height</h3>
+		        <p>Removes a container's height glitch while loading. Set it to false if your container is fixed height.</p>
+		        <p><u>Default:</u> true</p>	
 	        </div> <!-- /content-wrapper -->       
       	</div> <!-- /wrapper --> 
     </body>
