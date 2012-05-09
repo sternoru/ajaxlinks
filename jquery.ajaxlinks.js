@@ -33,9 +33,6 @@
 				{
 					$load_to.height('auto');
 				}
-				if(!config.callback) {
-					return;
-				}				
 				var content = $(this).html();
 				if(config.load_from && response) {
 					if($(this).find(config.load_from).length > 0) { // load inner html instead of container
@@ -47,8 +44,10 @@
 						$load_to.html(content);
 					}
 				}
-				var link = config.links.filter('[href*="'+href+'"]');
-	            config.callback(content, link, params);
+				if(config.callback) {
+					var link = config.links.filter('[href*="'+href+'"]');
+					config.callback(content, link, params);
+				}
 	        };			            
 			if(prevURL != params.path) {
 				prevURL = params.path;
