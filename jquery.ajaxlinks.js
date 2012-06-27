@@ -58,7 +58,7 @@
 					config.callback(content, link, params);
 				}
 	        };			            
-			if(prevURL != params.path) {
+			//if(prevURL != params.path) {
 				prevURL = params.path;
 				var path = config.load_from ? [params.path, config.load_from].join(' ') : params.path,
 					$load_to = $(config.load_to);
@@ -68,10 +68,10 @@
 					$load_to.height($load_to.height());
 				}
 				$load_to.html($(config.loader)).load(path, ajaxCallback);				
-			}
+			/*}
 			else {
 				ajaxCallback();
-			}
+			}*/
         };
 		
         if(typeof($.sammy) == 'function' && config.use_sammy == true) {
