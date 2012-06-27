@@ -20,7 +20,16 @@
 		    	var splitPath = href.split('|');			
 				for(var i = 0, ln = splitPath.length; i < ln; i++) {
 					var temp = splitPath[i].split('=');
-					params[temp[0]] = temp[1];
+					if(temp.length > 2) {
+						var temp2 = temp[1];
+						for(i = 2; i < temp.length; i++) {
+							var temp2 = [temp2, '=', temp[i]].join('');
+						}
+						params[temp[0]] = temp2;
+					}
+					else {
+						params[temp[0]] = temp[1];
+					}
 				}	
 		    }
 		    else {
