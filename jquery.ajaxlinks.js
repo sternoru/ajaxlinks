@@ -9,13 +9,17 @@
 			callback: null,
 			use_sammy: false,
 			prefix: '',
-			smooth_height: true
+			smooth_height: true,
+			goto_top: false
     	};    	
     	var config = $.extend(defaultConfig, newConfig);
     	config.links = this;    	
 		var prevURL = '';
 		var loadCall = function(href) {
-		    var params = {};
+		    if(config.goto_top) {
+				window.scrollTo(0, 0);
+			}
+			var params = {};
 		    if(typeof($.sammy) == 'function' && config.use_sammy == true) {
 		    	var splitPath = href.split('|');			
 				for(var i = 0, ln = splitPath.length; i < ln; i++) {
