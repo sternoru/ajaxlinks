@@ -10,7 +10,8 @@
 			use_sammy: false,
 			prefix: '',
 			smooth_height: true,
-			goto_top: false
+			goto_top: false,
+			fix_forms: true
     	};    	
     	var config = $.extend(defaultConfig, newConfig);
     	config.links = this;    	
@@ -56,6 +57,9 @@
 						content = response;
 						$load_to.html(content);
 					}
+				}
+				if(config.fix_forms) {
+					$('[action="."]').attr('action', href.replace('path=', ''));
 				}
 				if(config.callback) {
 					var link = config.links.filter('[href*="'+href+'"]');
