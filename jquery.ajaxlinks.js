@@ -13,7 +13,8 @@
 			goto_top: false,
 			fix_forms: true,
 			add_scripts: false,
-			ajaxify_content: false
+			ajaxify_content: false,
+			base_url: '/'
     	};
     	var config = $.extend(defaultConfig, newConfig);
     	config.links = this;    	
@@ -204,6 +205,7 @@
 					
 					if(linkHref != undefined && linkHref.indexOf('#!') == -1 && !isExternal($(item)[0].href)) {
 						$(item).attr('href', [
+							config.base_url,
 							config.prefix,
 							'#!path=',
 							linkHref
