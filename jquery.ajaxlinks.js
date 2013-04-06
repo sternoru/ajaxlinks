@@ -14,10 +14,56 @@
 			fix_forms: true,
 			add_scripts: false,
 			ajaxify_content: false,
-			base_url: '/'
+			base_url: '/',
+			ignore: '.no-al',
+			ignore_paths: ''
     	};
     	var config = $.extend(defaultConfig, newConfig);
-    	config.links = this;    	
+		// Removing the links that should be ignored
+		if(config.ignore != '') {
+			if(typeof(config.ignore) == "string") {
+				config.ignore = [config.ignore, ' a, a', config.ignore].join('');
+			}
+			else {
+				var tmp = '';
+				for(i = 0, ln = config.ignore.length; i < ln; i++) {
+					tmp = [tmp, i > 0 ? ', ' : '', config.ignore[i], ' a, a', config.ignore[i]].join('');
+				};
+				config.ignore = tmp;
+			}
+		}
+		// Removing the links having paths that should be ignored
+		var createFilter = function(path) {
+			var tmp = 'a[href';
+			if(path.substr(0, 1) == '*') {
+				if(path.substr(path.length - 1, 1) == '*') {
+					tmp = [tmp, '*='].join('');
+				}
+				else {
+					tmp = [tmp, '$='].join('');
+				}
+			}
+			else if(path.substr(path.length - 1, 1) == '*') {
+				tmp = [tmp, '^='].join('');
+			}
+			else {
+				tmp = [tmp, '='].join('');
+			}
+			return [tmp, path.replace(/\*/g, '').replace(/[#;&,.+~':"!^$[\]()=>|\/]/g, '\\$&'), ']'].join('');
+		};
+		if(config.ignore_paths != null && config.ignore_paths != '') {
+			if(typeof(config.ignore_paths) == "string") {
+				config.ignore_paths = createFilter(config.ignore_paths);
+			}
+			else {
+				var tmp = '';
+				for(i = 0, ln = config.ignore_paths.length; i < ln; i++) {
+					tmp = [tmp, i > 0 ? ', ' : '', createFilter(config.ignore_paths[i])].join('');
+				};
+				config.ignore_paths = tmp;
+			}
+		}
+		config.links = $(this).filter(":not('" + config.ignore + ', ' + config.ignore_paths + "')");
 		var prevURL = '';
 		var loadCall = function(href) {
 		    if(config.goto_top) {
@@ -175,7 +221,7 @@
 					}
 				}
 				if(config.ajaxify_content) {
-					manageLinks($(config.load_to).find('a').filter(":not('.no-al a, a.no-al')"));
+					manageLinks($(config.load_to).find('a').filter(":not('" + config.ignore + ', ' + config.ignore_paths + "')"));
 				}
 				if(config.callback) {
 					var link = config.links.filter('[href*="'+href+'"]');
@@ -239,10 +285,10 @@
 	            });
 			}
             
-			manageLinks(this);
+			manageLinks(config.links);
         }
         else {
-            manageLinks(this);
+            manageLinks(config.links);
     	}
     };
 })(jQuery);
