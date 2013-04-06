@@ -166,6 +166,14 @@ $('#nav1 a').ajaxlinks({
 				<h3>11. ajaxify_content</h3>
 		        <p>Set it to true to reapply ajaxlinks on any &lt;a&gt; tag loaded, except the ones that are in a container that has the "no-al" class, or have the class themselves.</p>
 		        <p><u>Default:</u> false</p>
+				<h3>12. ignore</h3>
+		        <p>Array of strings that defines classes and/or ids to ignore. Links with these or inside a container with these won't have ajaxlinks applied on it. If you only have one class or id to ignore you can set it as a string.</p>
+		        <p><u>Default:</u> '.no-al'</p>
+				<p><u>Example:</u> ignore: '.no-al' <b>or</b> ignore: ['.no-al', '#test']</p>
+				<h3>13. ignore_paths</h3>
+		        <p>Array of strings that defines paths to ignore. Links with these paths won't have ajaxlinks applied on it. If you only have one path to ignore you can set it as a string. You can also use the '*' character in order to use wildcards.</p>
+		        <p><u>Default:</u> ''</p>
+				<p><u>Example:</u> ignore_paths: '*demo/' <b>or</b> ignore_paths: ['/demo/', '*demo/', '*/demo/*', '/demo/*']</p>
 	        </div> <!-- /content-wrapper -->       
       	</div> <!-- /wrapper --> 
     </body>
