@@ -23,7 +23,7 @@
 					load_from: '#content',
 					loader: '<div>Custom loading...</div>',	
 					use_sammy: true,			
-					callback: function(content, link, params) {
+					callback: function(content, link, params, scripts) {
 						$('#content1').css('opacity', '0').animate({'opacity': '1'}, 'slow');	
 						$(link).addClass('active').siblings().removeClass('active');					
 					}
@@ -99,7 +99,7 @@ $('#nav1 a').ajaxlinks({
 	load_from: '#content',
 	loader: 'Custom loading...',
 	use_sammy: true,					
-	callback: function(content, link, params) {
+	callback: function(content, link, params, scripts) {
 		$('#content1').css('opacity', '0').animate({'opacity': '1'}, 'slow');
 		$(link).addClass('active').siblings().removeClass('active');
 	}
@@ -140,6 +140,7 @@ $('#nav1 a').ajaxlinks({
 		        	<li><b>content</b> - Content loaded from a target page</li>
 		        	<li><b>link</b> - Original link element clicked (after ajaxlinks were applied)</li>
 		        	<li><b>params</b> - Hash parameters after #! root separated by | if <a href="http://sammyjs.org/" target="_blank">Sammy.js</a> is used.</li>
+					<li><b>scripts</b> - The inline scripts that where found on the loaded page (if any) that you can execute</li>
 		        </ul>
 		        <h3>5. use_sammy</h3>
 		        <p>
@@ -152,7 +153,27 @@ $('#nav1 a').ajaxlinks({
 		        <p><u>Default:</u> ''</p>
 		        <h3>7. smooth_height</h3>
 		        <p>Removes a container's height glitch while loading. Set it to false if your container is fixed height.</p>
-		        <p><u>Default:</u> true</p>	
+		        <p><u>Default:</u> true</p>
+				<h3>8. goto_top</h3>
+		        <p>Set it to true to scroll to the top of the page when an ajaxlinked link is clicked.</p>
+		        <p><u>Default:</u> false</p>
+				<h3>9. fix_forms</h3>
+		        <p>Rewrites the forms "action" url that are included in the ajaxlinks response so they can be ajaxified as well. Set it to false if you already deal with the forms by ajax.</p>
+		        <p><u>Default:</u> true</p>
+				<h3>10. add_scripts</h3>
+		        <p>Ajax loads the javascript files included on the loaded page with the &lt;script&gt; tag if it needs specific scripts to be loaded. You can add a function name in a "data-callback" attribute for any file that needs a callback after being loaded. The files are loaded in the same order as they are in the loaded page.</p>
+		        <p><u>Default:</u> false</p>
+				<h3>11. ajaxify_content</h3>
+		        <p>Set it to true to reapply ajaxlinks on any &lt;a&gt; tag loaded, except the ones that are in a container that has the "no-al" class, or have the class themselves.</p>
+		        <p><u>Default:</u> false</p>
+				<h3>12. ignore</h3>
+		        <p>Array of strings that defines classes and/or ids to ignore. Links with these or inside a container with these won't have ajaxlinks applied on it. If you only have one class or id to ignore you can set it as a string.</p>
+		        <p><u>Default:</u> '.no-al'</p>
+				<p><u>Example:</u> ignore: '.no-al' <b>or</b> ignore: ['.no-al', '#test']</p>
+				<h3>13. ignore_paths</h3>
+		        <p>Array of strings that defines paths to ignore. Links with these paths won't have ajaxlinks applied on it. If you only have one path to ignore you can set it as a string. You can also use the '*' character in order to use wildcards.</p>
+		        <p><u>Default:</u> ''</p>
+				<p><u>Example:</u> ignore_paths: '*demo/' <b>or</b> ignore_paths: ['/demo/', '*demo/', '*/demo/*', '/demo/*']</p>
 	        </div> <!-- /content-wrapper -->       
       	</div> <!-- /wrapper --> 
     </body>
