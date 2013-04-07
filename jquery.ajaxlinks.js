@@ -14,7 +14,7 @@
 			fix_forms: true,
 			add_scripts: false,
 			ajaxify_content: false,
-			base_url: '/',
+			base_url: '',
 			ignore: '.no-al',
 			ignore_paths: ''
     	};
