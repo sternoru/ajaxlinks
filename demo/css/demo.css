@@ -77,12 +77,6 @@ a[name] {
 	border: 2px dashed #CCC;
 }
 
-#sponsor-logo {
-    display: block;
-    background: #333333;
-    padding: 10px;
-}
-
 #sponsor-logo img {
     width: 150px;
 }

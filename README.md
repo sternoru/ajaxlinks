@@ -10,4 +10,5 @@ Similar project to this one is https://github.com/defunkt/jquery-pjax
 
 [Demo and Documetation](http://sternoru.github.com/ajaxlinks/)
 
-[<img src="https://d2ogrdw2mh0rsl.cloudfront.net/production/images/layout/logo-header.png" width="150" alt=BrowserStack>](https://www.browserstack.com/)
+
+[<img src="https://www.browserstack.com/images/layout/browserstack-logo-600x315.png" width="150" alt=BrowserStack>](https://www.browserstack.com/)
