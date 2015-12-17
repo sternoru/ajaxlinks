@@ -21,19 +21,19 @@
         		$('#nav1 a').ajaxlinks({
 					load_to: '#content1',
 					load_from: '#content',
-					loader: '<div>Custom loading...</div>',	
-					use_sammy: true,			
+					loader: '<div>Custom loading...</div>',
+					use_sammy: true,
 					callback: function(content, link, params, scripts) {
-						$('#content1').css('opacity', '0').animate({'opacity': '1'}, 'slow');	
-						$(link).addClass('active').siblings().removeClass('active');					
+						$('#content1').css('opacity', '0').animate({'opacity': '1'}, 'slow');
+						$(link).addClass('active').siblings().removeClass('active');
 					}
         		});
-        	});        	
+        	});
         </script>
     </head>
-    <body>	
+    <body>
 	<span id="forkongithub"><a href="https://github.com/sternoru/ajaxlinks/">Fork me on GitHub</a></span>
-    	<div id="wrapper">	    
+    	<div id="wrapper">
             <div id="main-nav">
     			<a href="#">Top</a>
 			    |
@@ -43,22 +43,27 @@
 			    |
 			    <a href="#configuration">Configuration</a>
     		</div>
-    		<div id="header">    			
+    		<div id="header">
 		        <h1><a href="http://sternoru.github.com/ajaxlinks/">AjaxLinks.js</a><span> | jQuery plugin by <a href="http://sterno.ru/en/">Sterno.ru</a></span></h1>
 		        <p>
 		        	This plugin allows you to ajaxify your website.<br/>
 		        	By applying this plugin to your navigation links you can load content from other pages into the current page with one line of code!<br/>
-		        			        	
+
 		        </p>
 		        <p>AjaxLinks.js plays very nice with <a href="http://sammyjs.org/" target="_blank">Sammy.js</a></p>
 		        <p>Live example: navigation on <a href="http://redhero.com/en/home/#!path=/en/stores/" target="_blank">RedHero.com</a> website.</p>
 		        <p>GitHub repository: <a href="https://github.com/sternoru/ajaxlinks/">sternoru / ajaxlinks</a></p>
+                <p>
+                    <a id="sponsor-logo" href="https://www.browserstack.com/" target="_blank">
+                        <img src="https://d2ogrdw2mh0rsl.cloudfront.net/production/images/layout/logo-header.png" alt="BrowserStack">
+                    </a>
+                </p>
 		    </div> <!-- /header -->
-		    <div id="content-wrapper">		    	
+		    <div id="content-wrapper">
 		    	<h2><a name="download" href="#download">Download</a></h2>
 		    	<ul>
 		    		<li><a href="https://github.com/sternoru/ajaxlinks/raw/master/jquery.ajaxlinks.js">Source</a></li>
-		    		<li><a href="https://github.com/sternoru/ajaxlinks/raw/master/jquery.ajaxlinks.min.js">Source (minified)</a></li>		    		
+		    		<li><a href="https://github.com/sternoru/ajaxlinks/raw/master/jquery.ajaxlinks.min.js">Source (minified)</a></li>
 		    		<li><a href="https://github.com/sternoru/ajaxlinks/zipball/master">Source (ZIP, with demo files)</a></li>
 		    	</ul>
 		        <h2><a name="examples" href="#examples">Examples</a></h2>
@@ -69,8 +74,8 @@ $('#nav a').ajaxlinks({
 	load_from: '#content'
 });
 		        </code></pre>
-		        <div>			        		        
-			        <span id="nav">		        	
+		        <div>
+			        <span id="nav">
 			        	<a href="content/content1.html">Page 1</a>
 			        	|
 			        	<a href="content/content2.html">Page 2</a>
@@ -79,8 +84,8 @@ $('#nav a').ajaxlinks({
 			        </span>
 			        (AjaxLinks.js applied)
 		        </div>
-		        <div>			        		        
-			        <span id="nav-noajax">		        	
+		        <div>
+			        <span id="nav-noajax">
 			        	<a href="content/content1.html">Page 1</a>
 			        	|
 			        	<a href="content/content2.html">Page 2</a>
@@ -98,15 +103,15 @@ $('#nav1 a').ajaxlinks({
 	load_to: '#content1',
 	load_from: '#content',
 	loader: 'Custom loading...',
-	use_sammy: true,					
+	use_sammy: true,
 	callback: function(content, link, params, scripts) {
 		$('#content1').css('opacity', '0').animate({'opacity': '1'}, 'slow');
 		$(link).addClass('active').siblings().removeClass('active');
 	}
 });
 		        </code></pre>
-		        <div>			        		        
-			        <span id="nav1">		        	
+		        <div>
+			        <span id="nav1">
 			        	<a href="content/content1.html">Page 1</a>
 			        	|
 			        	<a href="content/content2.html">Page 2</a>
@@ -114,16 +119,16 @@ $('#nav1 a').ajaxlinks({
 			        	<a href="content/content3.html">Page 3</a>
 			        </span>
 			        (AjaxLinks.js applied)
-		        </div>		        
+		        </div>
 		        <div id="content1" class="content">
 		        	Content will be loaded here...
-		        </div>		        
+		        </div>
 		        <h2><a name="configuration" href="#configuration">Configuration</a></h2>
 		        <p>All the parameters are optional.</p>
 		        <h3>1. load_to</h3>
 		        <p>Selector of an element where AJAX content should be loaded into.</p>
-		        <p><u>Default:</u> '#content'</p>		        
-		        <h3>2. load_from</h3>		        
+		        <p><u>Default:</u> '#content'</p>
+		        <h3>2. load_from</h3>
 		        <p>
 		        	Selector of an element in a targer page where AJAX content should be taken from.<br/>
 		        	If not provided will load the whole page.
@@ -135,7 +140,7 @@ $('#nav1 a').ajaxlinks({
 		        <h3>4. callback</h3>
 		        <p>Callback function to call after content is loaded.</p>
 		        <p><u>Default:</u> null</p>
-		        <u>Function agruments:</u> 
+		        <u>Function agruments:</u>
 		        <ul>
 		        	<li><b>content</b> - Content loaded from a target page</li>
 		        	<li><b>link</b> - Original link element clicked (after ajaxlinks were applied)</li>
@@ -177,7 +182,7 @@ $('#nav1 a').ajaxlinks({
 		        <p>Array of strings that defines paths to ignore. Links with these paths won't have ajaxlinks applied on it. If you only have one path to ignore you can set it as a string. You can also use the '*' character in order to use wildcards.</p>
 		        <p><u>Default:</u> ''</p>
 				<p><u>Example:</u> ignore_paths: '*demo/' <b>or</b> ignore_paths: ['/demo/', '*demo/', '*/demo/*', '/demo/*']</p>
-	        </div> <!-- /content-wrapper -->       
-      	</div> <!-- /wrapper --> 
+	        </div> <!-- /content-wrapper -->
+      	</div> <!-- /wrapper -->
     </body>
 </html>
